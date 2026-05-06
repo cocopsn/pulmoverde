@@ -3,11 +3,14 @@
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Manifiesto from "@/components/Manifiesto";
 import Stats from "@/components/Stats";
+import HowItWorks from "@/components/HowItWorks";
 import LeyExplorer from "@/components/LeyExplorer";
 import AirQuality from "@/components/AirQuality";
 import Compromisos from "@/components/Compromisos";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/chat/ChatBot";
 
 const MapaCompromisos = dynamic(() => import("@/components/MapaCompromisos"), {
   ssr: false,
@@ -28,13 +31,16 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <Manifiesto />
         <Stats />
+        <HowItWorks />
         <LeyExplorer />
         <AirQuality />
         <Compromisos />
         <MapaCompromisos />
       </main>
       <Footer />
+      <ChatBot />
     </>
   );
 }
