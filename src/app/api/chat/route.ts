@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { openai, CHAT_MODEL, estimateCost } from "@/lib/openai";
+import { getOpenAI, CHAT_MODEL, estimateCost } from "@/lib/openai";
 import { search } from "@/lib/rag";
 import { supabaseAdmin } from "@/lib/supabase-server";
 
@@ -67,7 +67,7 @@ export async function POST(req: Request) {
 
   let completion;
   try {
-    completion = await openai.chat.completions.create({
+    completion = await getOpenAI().chat.completions.create({
       model: CHAT_MODEL,
       temperature: 0.3,
       max_tokens: 400,

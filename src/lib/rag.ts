@@ -8,7 +8,7 @@
  * do the math.
  */
 import { supabaseAdmin } from "./supabase-server";
-import { openai, EMBEDDING_MODEL } from "./openai";
+import { getOpenAI, EMBEDDING_MODEL } from "./openai";
 
 export interface RagDocument {
   id: string;
@@ -27,7 +27,7 @@ export interface RagHit {
 }
 
 export async function embed(text: string): Promise<number[]> {
-  const resp = await openai.embeddings.create({
+  const resp = await getOpenAI().embeddings.create({
     model: EMBEDDING_MODEL,
     input: text,
   });
@@ -36,7 +36,7 @@ export async function embed(text: string): Promise<number[]> {
 
 export async function embedBatch(texts: string[]): Promise<number[][]> {
   if (texts.length === 0) return [];
-  const resp = await openai.embeddings.create({
+  const resp = await getOpenAI().embeddings.create({
     model: EMBEDDING_MODEL,
     input: texts,
   });
